@@ -7,12 +7,14 @@ import LogIn from '../layout/LogIn';
 import Register from '../layout/Register';
 import Inventory from '../layout/Inventory';
 import RequireAuth from '../protectLayer/RequireAuth';
+import ErrorPage from '../layout/ErrorPage';
 
 const Routes = () => {
     const router = createBrowserRouter([
         {
             path:'/',
             element: <Root />,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     path: '/',
