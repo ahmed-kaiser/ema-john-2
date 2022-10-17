@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Cart from '../components/Cart';
-import Products from '../components/Products';
+import Cart from '../layout/Cart';
+import Products from '../layout/Products';
 import Root from '../layout/Root';
 import Home from '../layout/Home';
 import LogIn from '../layout/LogIn';
 import Register from '../layout/Register';
+import Inventory from '../layout/Inventory';
+import RequireAuth from '../protectLayer/RequireAuth';
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -22,7 +24,7 @@ const Routes = () => {
                 },
                 {
                     path: '/cart',
-                    element: <Cart />,
+                    element: <RequireAuth><Cart /></RequireAuth>,
                 },
                 {
                     path: '/login',
@@ -31,6 +33,10 @@ const Routes = () => {
                 {
                     path: '/register',
                     element: <Register />
+                },
+                {
+                    path: '/inventory',
+                    element: <RequireAuth><Inventory /></RequireAuth>,
                 }
             ]
         }
