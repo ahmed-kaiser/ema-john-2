@@ -1,16 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { Outlet, useLoaderData } from "react-router-dom";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
-
-export const loader = async () => {
-  return await fetch("products.json");
-};
+import { useRouteLoaderData } from "react-router-dom";
 
 export const ShopContext = createContext(null);
 
-const Home = () => {
-  const products = useLoaderData();
+const ShopContextFile = ({ children }) => {
+  const [products, setProducts] = useState() ;
   const [cart, setCart] = useState([]);
   // const [products, setProducts] = useState([]);
   const db = "shoppingCart";
@@ -103,7 +97,7 @@ const Home = () => {
     const storedCart = getCartFromDb();
     const cartItemList = [];
     for (const id in storedCart) {
-      let product = products.find((item) => item.id === id);
+      let product = products?.find((item) => item.id === id);
       if (product) {
         product.quantity = storedCart[id];
         cartItemList.push(product);
@@ -112,23 +106,23 @@ const Home = () => {
     setCart(cartItemList);
   }, [products]);
 
+  useEffect(() => {
+    fetch('products.json')
+    .then(result => result.json())
+    .then(data => setProducts(data))
+  }, []);
+
+  const localData = {
+    products,
+    cart,
+    addToCartHandler,
+    removeFromCartHandler,
+    removeSingleItemFromCartHandler,
+  };
+
   return (
-    <ShopContext.Provider
-      value={{
-        products: products,
-        cart: cart,
-        addToCartHandler: addToCartHandler,
-        removeFromCartHandler: removeFromCartHandler,
-        removeSingleItemFromCartHandler: removeSingleItemFromCartHandler,
-      }}
-    >
-      <NavBar />
-      <main className="min-h-[100vh]">
-        <Outlet />
-      </main>
-      <Footer />
-    </ShopContext.Provider>
+    <ShopContext.Provider value={localData}>{children}</ShopContext.Provider>
   );
 };
 
-export default Home;
+export default ShopContextFile;

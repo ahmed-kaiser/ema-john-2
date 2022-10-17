@@ -1,22 +1,36 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Cart from '../components/Cart';
-import Home, { loader as productsLoader } from '../components/Home';
 import Products from '../components/Products';
+import Root from '../layout/Root';
+import Home from '../layout/Home';
+import LogIn from '../layout/LogIn';
+import Register from '../layout/Register';
 
 const Routes = () => {
     const router = createBrowserRouter([
         {
             path:'/',
-            element: <Home />,
-            loader: productsLoader,
+            element: <Root />,
             children: [
                 {
-                    path: 'products',
+                    path: '/',
+                    element: <Home />,
+                },
+                {
+                    path: '/products',
                     element: <Products />,
                 },
                 {
                     path: '/cart',
-                    element: <Cart />
+                    element: <Cart />,
+                },
+                {
+                    path: '/login',
+                    element: <LogIn />,
+                },
+                {
+                    path: '/register',
+                    element: <Register />
                 }
             ]
         }

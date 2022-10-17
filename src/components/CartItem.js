@@ -1,6 +1,6 @@
 import { PlusIcon, MinusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
-import { ShopContext } from "./Home";
+import { ShopContext } from "../context/ShopContextFile";
 
 const CartItem = ({ item }) => {
   const {

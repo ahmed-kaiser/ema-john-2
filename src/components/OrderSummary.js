@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ShopContext } from "./Home";
+import { ShopContext } from "../context/ShopContextFile";
 
 const OrderSummary = () => {
   const { cart } = useContext(ShopContext);
