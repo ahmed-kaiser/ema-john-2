@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContextFile";
 import { UserAuthContext } from "../context/UserContext";
+import logo from '../asset/images/Logo.svg';
 
 const activeLink = "mx-3 text-slate-200 underline";
 const inActiveLink = "mx-3 hover:text-slate-200";
@@ -24,7 +25,7 @@ const NavBar = () => {
   return (
     <nav className="bg-slate-700 text-slate-300 sticky top-0 z-10">
       <div className="sm:container mx-auto flex items-center h-16 px-2 md:px-6">
-        <img src="./images/logo.svg" alt="" className="w-30" />
+        <img src={logo} alt="" className="w-30" />
         <div className="grow flex justify-between px-2">
           <div>
             <NavLink

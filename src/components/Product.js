@@ -1,6 +1,7 @@
 import { ShoppingCartIcon, EyeIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react';
 import { ShopContext } from '../context/ShopContextFile';
+import defaultImage from '../asset/images/no-image.jpg';
 
 const Product = ({ product }) => {
     const  { addToCartHandler }  = useContext(ShopContext);
@@ -10,7 +11,7 @@ const Product = ({ product }) => {
                 src={ product.img } 
                 alt="" 
                 onError={(e) => {
-                    e.currentTarget.src = "./images/no-image.jpg";
+                    e.currentTarget.src = {defaultImage};
                 }}
             />
             <div className="px-2 py-3 mb-12">

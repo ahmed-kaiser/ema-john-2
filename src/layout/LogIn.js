@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleIcon from "../asset/images/google-icon.png";
 import { useContext } from "react";
 import { UserAuthContext } from "../context/UserContext";
+import SocialIcons from "../components/SocialIcons";
 
 const LogIn = () => {
   const { userLogIn, userGoogleLogIn } = useContext(UserAuthContext);
@@ -20,16 +21,6 @@ const LogIn = () => {
         const user = result.user;
         console.log(user);
         form.reset();
-        navigate(from, { replace: true });
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const handleGoogleLogIn = () => {
-    userGoogleLogIn()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
@@ -75,16 +66,10 @@ const LogIn = () => {
             <Link to="/register">Register now</Link>
           </span>
         </p>
-        <div className="text-center mt-2">
+        <div className="text-center mt-1">
           <small className="block">------- OR --------</small>
-          <br />
-          <div
-            onClick={handleGoogleLogIn}
-            className="flex justify-center items-center cursor-pointer border p-2 bg-slate-100 hover:bg-slate-200 rounded-md"
-          >
-            <img src={googleIcon} alt="" className="h-5" />
-            <p className="ml-2 font-semibold text-slate-700">Google</p>
-          </div>
+          <p className="py-3 text-slate-600">Log in using social network</p>
+          <SocialIcons />
         </div>
       </div>
     </section>
